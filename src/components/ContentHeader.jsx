@@ -1,4 +1,4 @@
-export function HeaderContent() {
+export function ContentHeader() {
     return (
         <div>
             <div className="text-center">

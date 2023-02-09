@@ -1,6 +1,12 @@
+import axios from "axios";
+
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 import { useState } from "react";
-import Slider from "react-slick";
-import { HeaderContent } from "./HeaderContent";
+import { useQuery } from "react-query";
+
+import { Carousel } from 'react-responsive-carousel';
+import { ContentHeader } from "./ContentHeader";
 
 const weekDays = [
     "DOM",
@@ -15,20 +21,16 @@ const weekDays = [
 export function Content() {
     const [active, setActive] = useState("DOM");
 
-    const settings = {
-        // dots: true,
-        // autoplay: true,
-        // fade: true,
-        // infinite: true,
-        // speed: 500,
-        // autoplaySpeed: 5000,
-        // slidesToShow: 3,
-        // slidesToScroll: 1
-    };
+    async function getMoviesData() {
+        return await axios.get("https://api.themoviedb.org/3/movie/now_playing?api_key=9cd72d857790f9c47bf6782f62d8a48e&language=pt-BR&page=1")
+            .then(res => res.data.results)
+    }
+
+    const { data, isLoading } = useQuery("dataMovies", () => getMoviesData())
 
     return (
         <div className="max-w-4xl mx-auto mt-16">
-            <HeaderContent />
+            <ContentHeader />
 
             <div className="flex justify-center mt-16 pb-12 border-b-2 gap-8 text-4xl font-black">
                 {weekDays.map(day => (
@@ -42,29 +44,34 @@ export function Content() {
                 ))}
             </div>
 
-            <div  className="text-white text-center">
-                <h2 className="text-black text-3xl font-bold my-16">Filmes</h2>
-                <Slider {...settings} className="h-[50vh]">
-                    <div className="bg-black max-w-2xl h-[50vh]">
-                        <h3>1</h3>
+            <section className="mt-6">
+                {isLoading ? <h1>Carregando...</h1> : (
+                    <div>
+                        <h1 className="text-center mb-12 text-3xl font-extrabold">EM CARTAZ</h1>
+                        <Carousel infiniteLoop={true} emulateTouch={true} showStatus={false} autoPlay={true} interval={8000}>
+                            {data.map(movie => (
+                                <div
+                                    key={movie.id}
+                                    className="flex mb-10 mx-7 gap-4 cursor-pointer"
+                                >
+                                    <img
+                                        src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                                        alt={`Poster do filme ${movie.title}`}
+                                        className="max-w-xs"
+                                    />
+
+                                    <div className="w-full flex justify-center">
+                                        <h1 className="text-2xl font-bold">
+                                            {movie.title}
+                                        </h1>
+                                    </div>
+                                </div>
+                            ))}
+                        </Carousel>
                     </div>
-                    <div className="bg-black max-w-2xl h-[50vh]">
-                        <h3>2</h3>
-                    </div>
-                    <div className="bg-black max-w-2xl h-[50vh]">
-                        <h3>3</h3>
-                    </div>
-                    <div className="bg-black max-w-2xl h-[50vh]">
-                        <h3>4</h3>
-                    </div>
-                    <div className="bg-black max-w-2xl h-[50vh]">
-                        <h3>5</h3>
-                    </div>
-                    <div className="bg-black max-w-2xl h-[50vh]">
-                        <h3>6</h3>
-                    </div>
-                </Slider>
-            </div>
+                )}
+            </section>
+
         </div>
     )
 }
