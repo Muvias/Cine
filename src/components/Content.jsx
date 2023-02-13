@@ -23,6 +23,7 @@ export function Content() {
     const [active, setActive] = useState("DOM");
     const [movieId, setMovieId] = useState(505642);
     const [oneMovieData, setOneMovieData] = useState([]);
+    const [isFetching, setIsFetching] = useState(false);
 
     async function getMoviesData() {
         return await axios.get("https://api.themoviedb.org/3/movie/now_playing?api_key=9cd72d857790f9c47bf6782f62d8a48e&language=pt-BR&page=1")
@@ -33,11 +34,15 @@ export function Content() {
 
     useEffect(() => {
         async function getOneMovieData() {
-            return await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=9cd72d857790f9c47bf6782f62d8a48e&language=pt-BR`)
-                .then(res => setOneMovieData(res.data))
+            setIsFetching(true);
+
+            const response =  await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=9cd72d857790f9c47bf6782f62d8a48e&language=pt-BR`);
+            setOneMovieData(response.data);
+
+            setIsFetching(false);
         };
 
-        getOneMovieData()
+        getOneMovieData();
     }, [movieId])
 
     return (
@@ -76,7 +81,7 @@ export function Content() {
                                         className="w-[80%]"
                                         onClick={() => setMovieId(movie.id)}
                                     >
-                                        <Modal movieData={oneMovieData} />
+                                        <Modal movieData={oneMovieData} isLoading={isFetching} />
                                     </div>
 
                                 </div>
