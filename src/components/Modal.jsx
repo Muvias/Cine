@@ -20,19 +20,20 @@ export function Modal({ movieData, isLoading }) {
                         />
 
                         <div>
-                            <Dialog.Title className='text-3xl font-bold leading-tight mt-4'>
-                                {movieData.title}
+                            <Dialog.Title className='flex justify-between items-center text-3xl font-bold leading-tight mt-4'>
+                                <h1>{movieData.title}</h1>
+                                <span className='px-1 border border-blue-900 text-blue-900 font-bold'>{movieData.vote_average.toFixed(1)}</span>
                             </Dialog.Title>
                             <p className='font-bold text-blue-900'>
                                 Duração: <span className='font-semibold text-black'>{movieData.runtime}min</span>
                             </p>
 
-                            <Dialog.Description className='my-6 text-lg font-medium'>
+                            <Dialog.Description className='mt-6 mb-16 text-lg font-medium sm:my-6'>
                                 {movieData.overview !== "" ? movieData.overview : "Ainda não há descrição para este filme :("}
                             </Dialog.Description>
 
-                            <div className='fixed bottom-4'>
-                                <p className='flex items-center font-bold gap-4 text-blue-900'>
+                            <div className='fixed bottom-4 mt-4'>
+                                <p className='flex flex-wrap items-center font-bold gap-4 text-blue-900'>
                                     Gêneros: {movieData.genres?.map(genre =>
                                         <span className='font-bold px-4 py-1 border text-black border-gray-800' key={genre.id}>{genre.name}</span>
                                     )}
