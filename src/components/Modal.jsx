@@ -5,7 +5,7 @@ export function Modal({ movieData, isLoading }) {
         <Dialog.Root>
             <Dialog.Trigger
                 type='button'
-                className='w-full flex items-center justify-center py-4 px-6 font-semibold gap-3  border rounded-lg border-green-500 hover:border-green-300 transition-colors'
+                className='w-full flex items-center justify-center py-4 px-6 font-semibold gap-3  border rounded-lg border-blue-800 hover:border-blue-500 hover:text-slate-600 transition-colors'
             >
                 Veja mais
             </Dialog.Trigger>
@@ -21,8 +21,8 @@ export function Modal({ movieData, isLoading }) {
 
                         <div>
                             <Dialog.Title className='flex justify-between items-center text-3xl font-bold leading-tight mt-4'>
-                                <h1>{movieData.title}</h1>
-                                <span className='px-1 border border-blue-900 text-blue-900 font-bold'>{movieData.vote_average.toFixed(1)}</span>
+                                <p>{movieData.title}</p>
+                                <span className='px-1 border border-blue-900 text-blue-900 font-bold'>{movieData.vote_average?.toFixed(1)}</span>
                             </Dialog.Title>
                             <p className='font-bold text-blue-900'>
                                 Duração: <span className='font-semibold text-black'>{movieData.runtime}min</span>

@@ -9,21 +9,12 @@ import { Carousel } from 'react-responsive-carousel';
 import { ContentHeader } from "./ContentHeader";
 import { Modal } from "./modal";
 
-const weekDays = [
-    "DOM",
-    "SEG",
-    "TER",
-    "QUA",
-    "QUI",
-    "SEX",
-    "SAB"
-];
 
 export function Content() {
-    const [active, setActive] = useState("DOM");
     const [movieId, setMovieId] = useState(505642);
     const [oneMovieData, setOneMovieData] = useState([]);
     const [isFetching, setIsFetching] = useState(false);
+    const [filter, setFilter] = useState([35]);
 
     async function getMoviesData() {
         return await axios.get("https://api.themoviedb.org/3/movie/now_playing?api_key=9cd72d857790f9c47bf6782f62d8a48e&language=pt-BR&page=1")
@@ -45,28 +36,20 @@ export function Content() {
         getOneMovieData();
     }, [movieId])
 
+    function handleFilterChange(filter) {
+        setFilter(filter)
+    };
+
     return (
         <div className="max-w-4xl mx-auto mt-16">
-            <ContentHeader />
-
-            <div className="flex justify-center mt-16 pb-12 border-b-2 gap-8 text-4xl font-black">
-                {weekDays.map(day => (
-                    <h1
-                        key={day}
-                        className={`cursor-pointer  ${active === day ? "text-blue-900" : "text-gray-400"}`}
-                        onClick={() => setActive(day)}
-                    >
-                        {day}
-                    </h1>
-                ))}
-            </div>
+            <ContentHeader onFilterChange={handleFilterChange} />
 
             <div className="flex w-full mt-6 justify-center">
                 {isLoading ? <h1>Carregando...</h1> : (
                     <div className="max-w-[50%]">
                         <h1 className="text-center mb-8 text-3xl font-extrabold">EM CARTAZ</h1>
                         <Carousel infiniteLoop={true} emulateTouch={true} showStatus={false} interval={8000} >
-                            {data.map(movie => (
+                            {data.filter(movie => filter.every(id => movie.genre_ids.includes(id))).map(movie => (
                                 <div
                                     key={movie.id}
                                     className="flex flex-col items-center mb-14 mx-7 gap-4"
