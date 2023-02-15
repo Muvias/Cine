@@ -13,7 +13,7 @@ import { FilterMovies } from './FilterMovies';
 //     "SAB"
 // ];
 
-export function ContentHeader({ onFilterChange }) {
+export function ContentHeader({ filter, onFilterChange }) {
     // const [active, setActive] = useState("DOM");
 
     return (
@@ -26,9 +26,9 @@ export function ContentHeader({ onFilterChange }) {
                 </h1>
             </div>
 
-            <div className="mt-16 mb-8 text-center">
+            {/* <div className="mt-16 mb-8 text-center">
                 <h1 className="text-5xl font-black">PROGRAMAÇÃO</h1>
-            </div>
+            </div> */}
 
             {/* <div className="flex justify-center mt-16 pb-12 border-b-2 gap-8 text-4xl font-black">
                 {weekDays.map(day => (
@@ -50,8 +50,8 @@ export function ContentHeader({ onFilterChange }) {
                 </Popover.Trigger>
                 <Popover.Anchor />
                 <Popover.Portal>
-                    <Popover.Content className='flex flex-col min-w-[320px] p-6 rounded-md bg-slate-100' sideOffset={5} >
-                        <FilterMovies onFilterChange={onFilterChange} />
+                    <Popover.Content className='flex flex-col max-w-[620px] p-6 rounded-md bg-slate-100' sideOffset={5} >
+                        <FilterMovies filter={filter} onFilterChange={onFilterChange} />
                         <Popover.Close className='h-6 w-6 inline-flex justify-center items-center absolute top-1 right-1 rounded-full text-blue-900 hover:bg-slate-400 transition-colors'>
                             <Cross2Icon />
                         </Popover.Close>
