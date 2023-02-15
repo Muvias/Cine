@@ -3,18 +3,7 @@ import * as Popover from '@radix-ui/react-popover';
 import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
 import { FilterMovies } from './FilterMovies';
 
-// const weekDays = [
-//     "DOM",
-//     "SEG",
-//     "TER",
-//     "QUA",
-//     "QUI",
-//     "SEX",
-//     "SAB"
-// ];
-
 export function ContentHeader({ filter, onFilterChange }) {
-    // const [active, setActive] = useState("DOM");
 
     return (
         <div>
@@ -25,22 +14,6 @@ export function ContentHeader({ filter, onFilterChange }) {
                     CINEMA
                 </h1>
             </div>
-
-            {/* <div className="mt-16 mb-8 text-center">
-                <h1 className="text-5xl font-black">PROGRAMAÇÃO</h1>
-            </div> */}
-
-            {/* <div className="flex justify-center mt-16 pb-12 border-b-2 gap-8 text-4xl font-black">
-                {weekDays.map(day => (
-                    <h1
-                        key={day}
-                        className={`cursor-pointer  ${active === day ? "text-blue-900" : "text-gray-400"}`}
-                        onClick={() => setActive(day)}
-                    >
-                        {day}
-                    </h1>
-                ))}
-            </div> */}
 
             <Popover.Root>
                 <Popover.Trigger className='w-full mt-4'>
