@@ -4,17 +4,9 @@ import * as Checkbox from '@radix-ui/react-checkbox';
 import { CheckIcon } from '@radix-ui/react-icons';
 import { useQuery } from 'react-query';
 
-const categories = [
-    "2D",
-    "3D",
-    "DUBLADO",
-    "LEGENDADO",
-    "NACIONAL"
-]
-
 export function FilterMovies({ filter, onFilterChange }) {
     async function getAllGenreMovie() {
-        return await axios.get("https://api.themoviedb.org/3/genre/movie/list?api_key=9cd72d857790f9c47bf6782f62d8a48e&language=pt-BR")
+        return await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${import.meta.env.VITE_API_KEY}&language=pt-BR`)
             .then(res => res.data.genres)
     };
 
