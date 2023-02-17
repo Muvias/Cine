@@ -8,6 +8,7 @@ import { useQuery } from "react-query";
 import { Carousel } from 'react-responsive-carousel';
 import { ContentHeader } from "./ContentHeader";
 import { Modal } from "./modal";
+import { SliderFilter } from "./SliderFilter";
 
 
 export function Content() {
@@ -15,6 +16,7 @@ export function Content() {
     const [oneMovieData, setOneMovieData] = useState([]);
     const [isFetching, setIsFetching] = useState(false);
     const [filter, setFilter] = useState([]);
+    const [averageScore, setAverageScore] = useState(0);
 
     async function getMoviesData() {
         return await axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${import.meta.env.VITE_API_KEY}&language=pt-BR&page=1`)
@@ -27,7 +29,7 @@ export function Content() {
         async function getOneMovieData() {
             setIsFetching(true);
 
-            const response =  await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${import.meta.env.VITE_API_KEY}&language=pt-BR`);
+            const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${import.meta.env.VITE_API_KEY}&language=pt-BR`);
             setOneMovieData(response.data);
 
             setIsFetching(false);
@@ -47,9 +49,13 @@ export function Content() {
             <div className="flex w-full mt-6 justify-center">
                 {isLoading ? <h1>Carregando...</h1> : (
                     <div className="max-w-[50%]">
-                        <h1 className="text-center mb-8 text-3xl font-extrabold">EM CARTAZ</h1>
+                        <h1 className="text-center mb-6 text-3xl font-extrabold">EM CARTAZ</h1>
+                        <SliderFilter averageScore={averageScore} setAverageScore={setAverageScore} />
+
                         <Carousel infiniteLoop={true} emulateTouch={true} showStatus={false} autoPlay={true} interval={6000} showArrows={false}>
-                            {data.filter(movie => filter.every(id => movie.genre_ids.includes(id))).map(movie => (
+                            {data.filter(movie =>
+                                filter.every(id => movie.genre_ids.includes(id)) && movie.vote_average >= averageScore
+                            ).map(movie => (
                                 <div
                                     key={movie.id}
                                     className="flex flex-col items-center mb-14 mx-7 gap-4"

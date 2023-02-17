@@ -27,7 +27,6 @@ export function FilterMovies({ filter, onFilterChange }) {
     return (
         <>
             {isLoading ? <h1>Carregando...</h1> : (
-
                 <div className='flex flex-wrap justify-between gap-4'>
                     {data.map(categorie => {
                         return (
