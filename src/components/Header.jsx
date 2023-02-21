@@ -1,9 +1,9 @@
+
 export function Header() {
     return (
-        <div className="flex flex-col items-center gap-12">
-            <div className="bg-black text-white w-full">
-                <p className="text-sm text-end pr-2">Av. dos porcos, 0 - Jaguaré - Sâo Paulo - SP - CEP: 00000-000 | Tel: (00)99876-5432 | Whats</p>
-            </div>
+        <div className="flex items-center gap-2 bg-black/90 text-white w-full">
+            <span className="text-xl pl-2 text-blue-600 font-black">VPCine</span>
+            <p className="text-xs sm:text-sm font-medium">- Este produto usa a API TMDB, mas não é endossado ou certificado pelo TMDB.</p>
         </div>
     )
 }

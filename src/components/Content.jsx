@@ -1,4 +1,5 @@
 import axios from "axios";
+import logoTMDB from "../assets/logoTMDB.svg"
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -52,19 +53,20 @@ export function Content() {
                         <h1 className="text-center mb-6 text-3xl font-extrabold">EM CARTAZ</h1>
                         <SliderFilter averageScore={averageScore} setAverageScore={setAverageScore} />
 
-                        <Carousel infiniteLoop={true} emulateTouch={true} showStatus={false} autoPlay={true} interval={6000} showArrows={false}>
+                        <Carousel infiniteLoop={true} emulateTouch={true} showStatus={false} autoPlay={true} interval={6000} showArrows={false} showIndicators={false} >
                             {data.filter(movie =>
                                 filter.every(id => movie.genre_ids.includes(id)) && movie.vote_average >= averageScore
                             ).map(movie => (
                                 <div
                                     key={movie.id}
-                                    className="flex flex-col items-center mb-14 mx-7 gap-4"
+                                    className="flex flex-col items-center mx-7 gap-4"
                                 >
                                     <img
                                         src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                                         alt={`Poster do filme ${movie.title}`}
-                                        className="max-w-xs"
+                                        className="relative max-w-xs"
                                     />
+                                    <span className="absolute w-12 md:w-14 right-10 md:right-20 bottom-[4.2rem]"><img src={logoTMDB} /></span>
 
                                     <div
                                         className="w-[80%]"
