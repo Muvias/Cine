@@ -5,7 +5,7 @@ export function Modal({ movieData, isLoading }) {
         <Dialog.Root>
             <Dialog.Trigger
                 type='button'
-                className='w-full flex items-center justify-center py-4 px-6 font-semibold gap-3  border rounded-lg border-blue-800 hover:border-blue-500 hover:text-slate-600 transition-colors'
+                className='w-full flex items-center justify-center py-4 px-6 font-semibold border rounded-lg border-blue-800 hover:border-blue-500 hover:text-slate-600 transition-colors'
             >
                 Veja mais
             </Dialog.Trigger>

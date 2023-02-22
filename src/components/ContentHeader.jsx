@@ -22,8 +22,8 @@ export function ContentHeader({ filter, onFilterChange }) {
                     </div>
                 </Popover.Trigger>
                 <Popover.Anchor />
-                <Popover.Portal>
-                    <Popover.Content className='flex flex-col max-w-[620px] p-6 rounded-md bg-slate-100' sideOffset={5} >
+                <Popover.Portal className='w-full max-w-[620px]'>
+                    <Popover.Content className='flex flex-col w-screen max-w-[620px] p-6 rounded-md bg-slate-100' sideOffset={5} >
                         <FilterMovies filter={filter} onFilterChange={onFilterChange} />
                         <Popover.Close className='h-6 w-6 inline-flex justify-center items-center absolute top-1 right-1 rounded-full text-blue-900 hover:bg-slate-400 transition-colors'>
                             <Cross2Icon />

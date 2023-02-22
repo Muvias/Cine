@@ -1,5 +1,5 @@
 # Catálogo Cinema
-> Status: faltando responsividade.
+> Status: finished.
 
 *Este produto usa a API TMDB, mas não é endossado ou certificado pelo TMDB*
 

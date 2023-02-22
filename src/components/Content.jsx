@@ -44,12 +44,12 @@ export function Content() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto mt-16">
+        <div className="max-w-4xl mx-auto mt-8">
             <ContentHeader filter={filter} onFilterChange={handleFilterChange} />
 
             <div className="flex w-full mt-6 justify-center">
                 {isLoading ? <h1>Carregando...</h1> : (
-                    <div className="max-w-[50%]">
+                    <div className="max-w-[80%] sm:max-w-[65%] md:max-w-[50%]">
                         <h1 className="text-center mb-6 text-3xl font-extrabold">EM CARTAZ</h1>
                         <SliderFilter averageScore={averageScore} setAverageScore={setAverageScore} />
 
@@ -59,7 +59,7 @@ export function Content() {
                             ).map(movie => (
                                 <div
                                     key={movie.id}
-                                    className="flex flex-col items-center mx-7 gap-4"
+                                    className="flex flex-col items-center sm:mx-7 gap-4"
                                 >
                                     <img
                                         src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
