@@ -8,7 +8,7 @@ import { useQuery } from "react-query";
 
 import { Carousel } from 'react-responsive-carousel';
 import { ContentHeader } from "./ContentHeader";
-import { Modal } from "./modal";
+import { Modal } from "./Modal";
 import { SliderFilter } from "./SliderFilter";
 
 
