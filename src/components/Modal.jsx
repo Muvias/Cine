@@ -1,4 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
+import { Cross2Icon } from '@radix-ui/react-icons';
 
 export function Modal({ movieData, isLoading }) {
     return (
@@ -40,7 +41,9 @@ export function Modal({ movieData, isLoading }) {
                                 </p>
                             </div>
                         </div>
-                        <Dialog.Close />
+                        <Dialog.Close className='h-8 w-8 inline-flex justify-center items-center absolute top-2 right-2 rounded-full text-blue-900 hover:bg-slate-400 transition-colors'>
+                            <Cross2Icon className='w-full h-5' />
+                        </Dialog.Close>
                     </Dialog.Content>
                 )}
             </Dialog.Portal>

@@ -1,5 +1,5 @@
 # Catálogo Cinema
-> Status: finished.
+> Status: [online](https://cine-muvias.vercel.app/).
 
 *Este produto usa a API TMDB, mas não é endossado ou certificado pelo TMDB*
 
