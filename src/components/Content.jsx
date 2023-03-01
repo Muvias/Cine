@@ -66,7 +66,7 @@ export function Content() {
                                         alt={`Poster do filme ${movie.title}`}
                                         className="relative max-w-xs"
                                     />
-                                    <span className="absolute w-12 md:w-14 right-10 md:right-20 bottom-[4.2rem]"><img src={logoTMDB} /></span>
+                                    <span className="absolute w-12 md:w-14 right-4 md:right-14 lg:right-20 bottom-[4.2rem]"><img src={logoTMDB} /></span>
 
                                     <div
                                         className="w-[80%]"
@@ -81,6 +81,9 @@ export function Content() {
                     </div>
                 )}
             </div>
+            {!isLoading && (
+                <p className="text-xs font-semibold text-center">Este produto usa a API TMDB, mas não é endossado ou certificado pelo TMDB.</p>
+            )}
         </div>
     )
 }
