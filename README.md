@@ -10,4 +10,4 @@ Este projeto consiste em mostrar todos os filmes em cartaz nos cinemas do Brasil
 - React Hooks;
 - React query e Axios;
 - Tailwind CSS;
-- Radix;
+- Radix.
